@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body style="overflow: hidden;">
+<canvas id="canvas"></canvas>
+</body>
+</html>
+<script>
+canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+x = 0;
+x2 = 0;
+coord = 1;
+coord2 = 1;
+coordSin2 = 10;
+coordSin = 10;
+var timer;
+var timer2;
+function drawSin() {
+y = coord+30 + coordSin * Math.sin(x / 4);
+ctx.fillStyle = `rgb(${Math.floor(Math.ceil(x / 3))}, ${Math.floor(Math.ceil(y / 3))}, ${Math.floor(Math.ceil(coord / 3))})`;
+ctx.fillRect(x, y, 2, 2);
+timer = setTimeout(drawSin, 10);
+}
+function drawSinTwo() {
+y2 = coord2+20 + 15 * Math.sin(x2 / 6);
+ctx.fillStyle = `rgb(${Math.floor(Math.ceil(x2 / 3))}, ${Math.floor(Math.ceil(y2 / 3))}, ${Math.floor(Math.ceil(coord2 / 3))})`;
+ctx.fillRect(x2, y2, 3, 1);
+timer2 = setTimeout(drawSinTwo, 10);
+}
+document.addEventListener('keydown', function(event) {
+if (event.code == 'ArrowRight') {
+x2 += 2;
+} else if (event.code == 'ArrowLeft') {
+x2 -= 2;
+} else if (event.code == 'ArrowDown') {
+coord2 += 2;
+} else if (event.code == 'ArrowUp') {
+coord2 -= 2;
+} else if (event.code == 'KeyD') {
+x += 2;
+} else if (event.code == 'KeyA') {
+x -= 2;
+} else if (event.code == 'KeyS') {
+coord += 2;
+} else if (event.code == 'KeyW') {
+coord -= 2;
+}
+});
+drawSin();
+drawSinTwo();
+</script>
